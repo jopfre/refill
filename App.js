@@ -10,11 +10,14 @@ import TheMap from './components/Map';
 
 const store = createStore(reducer);
 
+
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <TheMap/>
+        <View>
+          <TheMap style={{flex: 1}}/>
+        </View>
       </Provider>
     );
   }
