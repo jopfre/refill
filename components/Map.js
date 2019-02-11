@@ -10,13 +10,15 @@ import { getMarkers } from '../actions';
 class TheMap extends Component {
   constructor(props) {
     super(props);
+    // this.props.getMarkers();
   }
 
   componentDidMount() {
-    this.props.getMarkers();
+    // this.props.getMarkers();
   }
     
   render() {
+    const { markers } = this.props
     return (
       <MapView
         style={{height: "100%"}}
@@ -27,15 +29,17 @@ class TheMap extends Component {
           longitudeDelta: 0.0421
         }}
         showsUserLocation={true}>
-        {this.props.markers.map((marker, i) => {
-          return (
-            <Marker key={ marker.id } coordinate={ marker.coordinates }>
-              <Callout>
-                <Text>{ marker.title }</Text>
-              </Callout>
-            </Marker> 
-          )
-        })}
+        { 
+          markers.map((marker, i) => {
+            return (
+              <Marker key={ marker.id } coordinate={ marker.coordinates }>
+                <Callout>
+                  <Text>{ marker.title }</Text>
+                </Callout>
+              </Marker> 
+            )
+          })
+        }
       </MapView>        
     );
   }
