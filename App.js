@@ -10,7 +10,6 @@ import TheMap from './components/Map';
 
 const store = createStore(reducer);
 
-
 export default class App extends Component {
   render() {
     return (

@@ -1,12 +1,15 @@
 import { GET_MARKERS } from './actions/types';
 
-export default function reducer(state = {}, action) {
-	console.log('reducer called');
+const initialState = {
+	markers: []
+}
+
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_MARKERS:
       return {
         ...state,
-        coordinates: action.payload
+        markers: action.payload
       };
     default:
       return state;
