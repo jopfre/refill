@@ -15,7 +15,7 @@ export default class MapScreen extends Component {
         <Button 
           style={{ height: 50 }}
           title="Add Station"
-          onPress={() => navigate('Profile', {name: 'Jane'})}
+          onPress={() => navigate('Add')}
         />
       </View>
     );

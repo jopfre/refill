@@ -8,27 +8,11 @@ import store from './store'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import MapScreen from './screens/MapScreen';
-
-
-
-class ProfileScreen extends Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
-  render() {
-    const {navigate} = this.props.navigation;
-    return (
-      <Button
-        title="Go to Jane's profile"
-        onPress={() => navigate('Profile', {name: 'Jane'})}
-      />
-    );
-  }
-}
+import AddScreen from './screens/AddScreen';
 
 const MainNavigator = createStackNavigator({
-  Home: {screen: MapScreen},
-  Profile: {screen: ProfileScreen},
+  Map: {screen: MapScreen},
+  Add: {screen: AddScreen},
 });
 
 const AppContainer = createAppContainer(MainNavigator);
@@ -42,16 +26,3 @@ export default class App extends React.Component {
   	);
   }
 }
-
-
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <Provider store={store}>
-//         <View>
-//           <TheMap style={{flex: 1}}/>
-//         </View>
-//       </Provider>
-//     );
-//   }
-// }
