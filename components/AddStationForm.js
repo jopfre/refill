@@ -8,6 +8,8 @@ import {
   Button
 } from 'react-native'
 
+import { connect } from 'react-redux';
+
 import { Field, reduxForm } from 'redux-form'
 
 class AddStationForm extends Component {
@@ -42,13 +44,26 @@ class AddStationForm extends Component {
         <Text>Longitude:</Text>
         <Field name="longitude" component={this.renderInput} />
         <Button title="Submit" onPress={handleSubmit(this.submit)} />
+        {console.log('form', this.props.center)}
       </View>
     )
   }
 }
 
+const mapStateToProps = state => ({
+  center: state.map.center
+});
+
+AddStationForm = connect(
+  mapStateToProps
+)(AddStationForm)
+
 export default reduxForm({
-  form: 'test'
+  form: 'addstation',
+  // initialValues: { 
+    // latitude: state.center.latitude,
+    // longitude: state.center.longitude
+  // }
 })(AddStationForm)
 
 const styles = StyleSheet.create({

@@ -3,11 +3,11 @@ import createSagaMiddleware from 'redux-saga'
 
 import { reducer as formReducer } from 'redux-form'
 
-import markerReducer from './reducers/markerReducer';
+import mapReducer from './reducers/mapReducer';
 import rootSaga from './sagas';
 	
 const reducers = {
- 	marker: markerReducer,
+ 	map: mapReducer,
   form: formReducer
 }
 

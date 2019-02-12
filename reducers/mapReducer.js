@@ -1,10 +1,10 @@
-import { GET_MARKERS, ADD_MARKER } from '../actions/types';
+import { GET_MARKERS, ADD_MARKER, SET_CENTER } from '../actions/types';
 
 const initialState = {
 	markers: []
 }
 
-export default function markerReducer(state = initialState, action) {
+export default function mapReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MARKERS:
       return {
@@ -16,6 +16,11 @@ export default function markerReducer(state = initialState, action) {
       return {
         ...state,
         markerToAdd: action.payload
+      }
+    case SET_CENTER:
+      return {
+        ...state,
+        center: action.payload
       }
     default:
       return state;

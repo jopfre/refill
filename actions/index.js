@@ -1,4 +1,4 @@
-import { GET_MARKERS, ADD_MARKER } from './types';
+import { GET_MARKERS, ADD_MARKER, SET_CENTER } from './types';
 
 export const getMarkers = (markers) => {
 	return ({
@@ -11,5 +11,12 @@ export const addMarker = (marker) => {
 	return ({
 	  type: ADD_MARKER,
 	  payload: marker
+	});
+};
+
+export const setCenter = (coordinates) => {
+	return ({
+	  type: SET_CENTER,
+	  payload: coordinates
 	});
 };

@@ -5,11 +5,18 @@ import { connect } from 'react-redux';
 
 import MapView, { Marker, Callout } from 'react-native-maps';
 
+import { setCenter } from '../actions';
+
 class MapComponent extends Component {
   constructor(props) {
     super(props);
+    this.onRegionChangeCompleteHandler = this.onRegionChangeCompleteHandler.bind(this);
   }
-    
+
+  onRegionChangeCompleteHandler(event) {
+    this.props.dispatch(setCenter(event));
+  }
+
   render() {
     const { markers } = this.props
     return (
@@ -22,7 +29,8 @@ class MapComponent extends Component {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421
           }}
-          showsUserLocation={true}>
+          showsUserLocation={true}
+          onRegionChangeComplete={this.onRegionChangeCompleteHandler}>
           { 
 
             Object.keys(markers).map(function(key, index) {
@@ -35,7 +43,7 @@ class MapComponent extends Component {
                 </Marker> 
               )
             })
-            
+
           }
         </MapView>
       </View>
@@ -53,7 +61,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  markers: state.marker.markers
+  markers: state.map.markers
 });
 
 const mapDispatchToProps = dispatch => ({
