@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 
 import MapView, { Marker, Callout } from 'react-native-maps';
 
-import { getMarkers } from '../actions';
-
 class MapComponent extends Component {
   constructor(props) {
     super(props);
@@ -26,15 +24,18 @@ class MapComponent extends Component {
           }}
           showsUserLocation={true}>
           { 
-            markers.map((marker, i) => {
+
+            Object.keys(markers).map(function(key, index) {
+              console.log(markers[key]);
               return (
-                <Marker key={ marker.id } coordinate={ marker.coordinates }>
+                <Marker key={ key } coordinate={ markers[key].coordinates }>
                   <Callout>
-                    <Text>{ marker.title }</Text>
+                    <Text>{ markers[key].title }</Text>
                   </Callout>
                 </Marker> 
               )
             })
+            
           }
         </MapView>
       </View>
@@ -52,11 +53,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-  markers: state.markers
+  markers: state.marker.markers
 });
 
-const mapDispatchToProps = {
+const mapDispatchToProps = dispatch => ({
   getMarkers
-};
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapComponent);
+export default connect(mapStateToProps)(MapComponent);

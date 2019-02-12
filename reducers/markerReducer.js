@@ -1,17 +1,22 @@
-import { GET_MARKERS } from './actions/types';
+import { GET_MARKERS, ADD_MARKER } from '../actions/types';
 
 const initialState = {
 	markers: []
 }
 
-export default function reducer(state = initialState, action) {
+export default function markerReducer(state = initialState, action) {
   switch (action.type) {
     case GET_MARKERS:
-    	console.log('payload', action.payload);
       return {
         ...state,
         markers: action.payload
       };
+    case ADD_MARKER:
+      console.log('markerToAdd', action.payload);
+      return {
+        ...state,
+        markerToAdd: action.payload
+      }
     default:
       return state;
   }
