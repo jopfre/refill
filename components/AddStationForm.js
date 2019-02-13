@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
   Button
 } from 'react-native'
@@ -44,27 +43,21 @@ class AddStationForm extends Component {
         <Text>Longitude:</Text>
         <Field name="longitude" component={this.renderInput} />
         <Button title="Submit" onPress={handleSubmit(this.submit)} />
-        {console.log('form', this.props.center)}
       </View>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  center: state.map.center
+  initialValues: {
+    latitude: state.map.center.latitude.toString(),
+    longitude: state.map.center.longitude.toString()
+  }
 });
 
-AddStationForm = connect(
-  mapStateToProps
-)(AddStationForm)
-
-export default reduxForm({
-  form: 'addstation',
-  // initialValues: { 
-    // latitude: state.center.latitude,
-    // longitude: state.center.longitude
-  // }
-})(AddStationForm)
+export default (connect(mapStateToProps)(reduxForm({
+  form: 'addStation'
+})(AddStationForm)))
 
 const styles = StyleSheet.create({
   input: {

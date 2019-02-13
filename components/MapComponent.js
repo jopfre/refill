@@ -34,7 +34,6 @@ class MapComponent extends Component {
           { 
 
             Object.keys(markers).map(function(key, index) {
-              console.log(markers[key]);
               return (
                 <Marker key={ key } coordinate={ markers[key].coordinates }>
                   <Callout>

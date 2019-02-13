@@ -14,15 +14,13 @@ function* getMarkersSaga() {
 }
 
 function* addMarkerSaga({ values, resolve, reject }) { 
-	console.log('addmarkersaga', values)
-	// add to db:
-	// yield call(rsf.database.create, 'markers', {
-	// 	title: values.name,
-	// 	coordinates: {
-	// 		latitude: values.latitude,
-	// 		longitude: values.longitude
-	// 	}
-	// })
+	yield call(rsf.database.create, 'markers', {
+		title: values.name,
+		coordinates: {
+			latitude: parseFloat(values.latitude),
+			longitude: parseFloat(values.longitude)
+		}
+	})
 }
 
 export default function* rootSaga () {

@@ -12,7 +12,6 @@ export default function mapReducer(state = initialState, action) {
         markers: action.payload
       };
     case ADD_MARKER:
-      console.log('markerToAdd', action.payload);
       return {
         ...state,
         markerToAdd: action.payload
