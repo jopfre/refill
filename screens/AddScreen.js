@@ -12,7 +12,7 @@ export default class AddScreen extends Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <AddStationForm/>
+        <AddStationForm navigate={navigate}/>
         <Button
         title="View Map"
         onPress={() => navigate('Map')}

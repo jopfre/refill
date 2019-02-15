@@ -5,6 +5,14 @@ import { fork, takeEvery, call} from 'redux-saga/effects'
 import { getMarkers, addMarker } from './actions'
 
 
+		// function addMarker() {
+		//   return new Promise(resolve => {
+		//     const database = firebase.database();
+		//     const connectionRef = database.ref('.info/connected');
+		//     connectionRef.on('value', resolve);
+		//   });
+		// }
+
 function* getMarkersSaga() { 
 	yield fork(
     rsf.database.sync,
@@ -21,6 +29,8 @@ function* addMarkerSaga({ values, resolve, reject }) {
 			longitude: parseFloat(values.longitude)
 		}
 	})
+	// todo check if actuall success
+	resolve('success');
 }
 
 export default function* rootSaga () {

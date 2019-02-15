@@ -8,6 +8,7 @@ export const getMarkers = (markers) => {
 };
 
 export const addMarker = (marker) => {
+	console.log('action', marker)
 	return ({
 	  type: ADD_MARKER,
 	  payload: marker

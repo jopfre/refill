@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+// import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 
 import MapView, { Marker, Callout } from 'react-native-maps';
@@ -58,6 +60,10 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   }
 });
+
+// MapComponent.propTypes = {
+  // markers: PropTypes.array
+// };
 
 const mapStateToProps = state => ({
   markers: state.map.markers

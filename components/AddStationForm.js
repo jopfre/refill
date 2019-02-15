@@ -28,7 +28,12 @@ class AddStationForm extends Component {
         resolve,
         reject 
       });
+    }).then(res => {
+      if (res === 'success') {
+        this.props.navigate('Map')
+      }
     }).catch((error) => {
+      console.log(error)
       throw new SubmissionError(error);
     });
   }

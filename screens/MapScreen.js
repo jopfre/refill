@@ -12,6 +12,7 @@ export default class MapScreen extends Component {
     return (
       <View style={ styles.container }>
         <MapComponent style={ styles.container }></MapComponent>
+        <Text style= {{ fontSize: 20, position: "absolute", top: "50%", left: "50%", zIndex: 100 }}>+</Text>
         <Button 
           style={{ height: 50 }}
           title="Add Station"
