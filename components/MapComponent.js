@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -9,18 +9,36 @@ import MapView, { Marker, Callout } from 'react-native-maps';
 
 import { setCenter } from '../actions';
 
-class MapComponent extends Component {
+export class MapComponent extends Component {
   constructor(props) {
     super(props);
     this.onRegionChangeCompleteHandler = this.onRegionChangeCompleteHandler.bind(this);
+    this.renderMarkers = this.renderMarkers.bind(this);
   }
 
   onRegionChangeCompleteHandler(event) {
     this.props.dispatch(setCenter(event));
   }
 
-  render() {
+  renderMarkers() {
     const { markers } = this.props
+    // if (markers) {
+      Object.keys(markers).map(function(key, index) {
+        return (
+          <Marker key={ key } coordinate={ markers[key].coordinates }>
+            <Callout>
+              <Text>{ markers[key].title }</Text>
+            </Callout>
+          </Marker> 
+        )
+      })
+    // } else {
+      // console.error('No markers in props. Are there markers in the db? Is the db connected?');
+    // }
+
+  }
+
+  render() {
     return (
       <View style={ styles.container }>
         <MapView
@@ -34,17 +52,8 @@ class MapComponent extends Component {
           showsUserLocation={true}
           onRegionChangeComplete={this.onRegionChangeCompleteHandler}>
           { 
-
-            Object.keys(markers).map(function(key, index) {
-              return (
-                <Marker key={ key } coordinate={ markers[key].coordinates }>
-                  <Callout>
-                    <Text>{ markers[key].title }</Text>
-                  </Callout>
-                </Marker> 
-              )
-            })
-
+            
+            this.renderMarkers()
           }
         </MapView>
       </View>
@@ -61,9 +70,9 @@ const styles = StyleSheet.create({
   }
 });
 
-// MapComponent.propTypes = {
-  // markers: PropTypes.array
-// };
+MapComponent.propTypes = {
+  markers: PropTypes.object
+};
 
 const mapStateToProps = state => ({
   markers: state.map.markers

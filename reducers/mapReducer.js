@@ -1,7 +1,7 @@
 import { GET_MARKERS, ADD_MARKER, SET_CENTER } from '../actions/types';
 
 const initialState = {
-	markers: []
+	markers: {}
 }
 
 export default function mapReducer(state = initialState, action) {
